@@ -3,7 +3,7 @@
     <template id="dotee_report_invoice">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-call="web.internal_layout">
                     <div class="page">
                         <div class="row">
                             <div class="col-8 py-2 px-2">
@@ -176,7 +176,7 @@
                               <div>Dear Customer</div>
                               <div>Please call LAWMA response lines</div>
                               <div>5577 (free from Glo) or 07080601020</div>
-                              <div>or PSP number</div>
+                              <div>or PSP number<span t-field="ref_company.phone"/></div>
                             </span>
                           </div>
                           <div class="col-4">
