@@ -168,7 +168,7 @@
                                 <span>
                                     <strong>Property Code:</strong>
                                 </span> 
-                                <span t-field="o.x_studio_customer_payment_number"/>
+                                <!-- <span t-field="o.x_studio_customer_payment_number"/> -->
                             </p>
                           </div>
                           <div class="col-5">
