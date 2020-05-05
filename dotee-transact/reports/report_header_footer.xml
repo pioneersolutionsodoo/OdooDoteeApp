@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="external_layout_header_inherit_cr" 
-        inherit_id="web.internal_layout">
+        inherit_id="web.external_layout">
         <xpath expr="//div[@class='header']" position="replace">
             <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
             <div class="header">
