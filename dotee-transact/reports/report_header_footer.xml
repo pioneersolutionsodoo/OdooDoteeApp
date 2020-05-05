@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="external_layout_header_inherit_cr">
-        <!-- inherit_id="web.external_layout"> -->
-        <!-- <xpath expr="//div[@class='header']" position="replace"> -->
-        <!-- <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/> -->
-        <div class="header">
+        <div class="header" style="height:40px;overflow: hidden;">
             <!-- code -->
             <div class="row">
                 <div class="col-4">
@@ -30,14 +27,9 @@
                 </div>
             </div>
         </div>
-        <!-- </xpath> -->
-    <!-- </template>
-    
-    <template id="external_layout_footer_inherit_cr"
-              inherit_id="web.internal_layout">
-         -->
-        <!-- <xpath expr="//div[@class='article']" position="after"> -->
-        <div class="article"></div>
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+          <t t-raw="0"/>
+        </div>
         <div class="footer o_standard_footer o_company_#{company.id}_layout">
                     <!-- Table section -->
             <div class="row">
@@ -169,6 +161,5 @@
             </div>
 
         </div>
-        <!-- </xpath> -->
     </template>
 </odoo>
