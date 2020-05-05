@@ -1,5 +1,5 @@
 # Odoo REST API
-This is a module which expose Odoo as a REST API 
+This is a module which expose Odoo as a REST API.
 
 
 ## Installing
