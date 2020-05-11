@@ -176,7 +176,7 @@
                               <div>Dear Customer</div>
                               <div>Please call LAWMA response lines</div>
                               <div>5577 (free from Glo) or 07080601020</div>
-                              <div>or PSP number<span t-field="ref_company.phone"/></div>
+                              <div>or PSP number<span t-field="o.company_id.phone"/></div>
                             </span>
                           </div>
                           <div class="col-4">
