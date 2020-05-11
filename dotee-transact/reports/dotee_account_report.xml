@@ -19,7 +19,7 @@
                         <t t-set="company" t-value="res_company"/>
                     </t>
                 </t>
-                    <div class="page mt-3" style="font-size:12px; line-height:1.2">
+                    <div class="page mt-3 h-100" style="font-size:12px; line-height:1.2">
                         <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
                         <div class="row">
                             <div class="col-4">
@@ -224,28 +224,30 @@
                         </div>
 <!--                         <t t-call="dotee-transact.external_layout_footer_inherit_cr"/> -->
 
-                        <div class="row mb-2">
-                            <table class="table table-borderless">
-                                <h6 style="font-family:arial black;font-size:12">PSP COPY</h6>
-                                <thead>
-                                    <th><span>Name</span></th>
-                                    <th><span>Property Code</span></th>
-                                    <th class="border-left border-dark"><span>Company Account Code</span></th>
-                                    <th class="border-left border-dark"><span>Property Class</span></th>
-                                    <th class="border-left border-dark"><span>Amount Due</span></th>
-                                    <th class="border-left border-dark"><span>Invoice Month</span></th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="border-left border-dark"></td>
-                                        <td class="border-left border-dark"></td>
-                                        <td class="border-left border-dark"></td>
-                                        <td class="border-left border-dark"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="row mb-2 mt-2">
+                            <div class="col-12">
+                                <table class="table table-borderless">
+                                    <h6 style="font-family:arial black;font-size:15px">PSP COPY</h6>
+                                    <thead>
+                                        <th><span>Name</span></th>
+                                        <th><span>Property Code</span></th>
+                                        <th class="border-left border-dark"><span>Company Account Code</span></th>
+                                        <th class="border-left border-dark"><span>Property Class</span></th>
+                                        <th class="border-left border-dark"><span>Amount Due</span></th>
+                                        <th class="border-left border-dark"><span>Invoice Month</span></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="border-left border-dark"></td>
+                                            <td class="border-left border-dark"></td>
+                                            <td class="border-left border-dark"></td>
+                                            <td class="border-left border-dark"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- .\end Table Section -->
                         <div class="row">
@@ -261,34 +263,36 @@
                             </div>
             <!--                     <div class="clearfix"></div> -->
                             <div class="col-3">
-                                <div class="border-dotted border-dark rounded-0" style="width:auto; height:70px"></div>
+                                <div class="border border-dotted border-dark rounded-0" style="width:auto; height:70px"></div>
                                 <span style="font-size:6px; line-height:0.5; top:0px">DATE, SIGNATURE and BANK STAMP</span>
                             </div>
                         </div>
                         
                         <!-- Table section -->
                         <div class="row mb-2">
-                            <table class="table table-borderless">
-                                <h6 style="font-family:arial black;font-size:12px">LAWMA COPY</h6>
-                                <thead>
-                                    <th><span>Name</span></th>
-                                    <th><span>Property Code</span></th>
-                                    <th class="border-left border-dark"><span>Company Account Code</span></th>
-                                    <th class="border-left border-dark"><span>Property Class</span></th>
-                                    <th class="border-left border-dark"><span>Amount Due</span></th>
-                                    <th class="border-left border-dark"><span>Invoice Month</span></th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="border-left border-dark"></td>
-                                        <td class="border-left border-dark"></td>
-                                        <td class="border-left border-dark"></td>
-                                        <td class="border-left border-dark"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="col-12">
+                                <table class="table table-borderless">
+                                    <h6 style="font-family:arial black;font-size:15px">LAWMA COPY</h6>
+                                    <thead>
+                                        <th><span>Name</span></th>
+                                        <th><span>Property Code</span></th>
+                                        <th class="border-left border-dark"><span>Company Account Code</span></th>
+                                        <th class="border-left border-dark"><span>Property Class</span></th>
+                                        <th class="border-left border-dark"><span>Amount Due</span></th>
+                                        <th class="border-left border-dark"><span>Invoice Month</span></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="border-left border-dark"></td>
+                                            <td class="border-left border-dark"></td>
+                                            <td class="border-left border-dark"></td>
+                                            <td class="border-left border-dark"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- .\end Table Section -->
                         
