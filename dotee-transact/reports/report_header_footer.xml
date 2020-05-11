@@ -15,7 +15,7 @@
                 <t t-set="company" t-value="res_company"/>
             </t>
         </t>
-        <div class="header" style="height:40px;overflow: hidden;">
+        <!-- <div class="header" style="height:40px;overflow: hidden;"> -->
             <!-- code -->
             <div class="row">
                 <div class="col-4">
@@ -40,7 +40,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
           <t t-raw="0"/>
         </div>
