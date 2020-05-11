@@ -19,7 +19,7 @@
                         <t t-set="company" t-value="res_company"/>
                     </t>
                 </t>
-                    <div class="page">
+                    <div class="page mt-3" style="font-size:12px; line-height:1.2">
                         <div class="row">
                             <div class="col-4">
                                 <!-- dotee-transact.external_layout_header_inherit_cr -->
@@ -45,7 +45,7 @@
                         </div>
                         <div class="row">
                             <div class="col-8 py-2 px-2">
-                                <h2>Report title</h2>
+                                <h4>Report title</h4>
                                 <p>Number: <span t-field="o.name"/></p>
                                 <table class="table" name="invoice_line_table">
                                     <thead>
@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                             <div class="col-4" style="font-size:12px; line-height:1.2">
-                                <h2>Payment Options</h2>
+                                <h4>Payment Options</h4>
                                 <br />
                                 <h6>USSD:</h6>
                                 <ol>
@@ -223,9 +223,9 @@
                         </div>
 <!--                         <t t-call="dotee-transact.external_layout_footer_inherit_cr"/> -->
 
-                        <div class="row">
+                        <div class="row mb-2">
                             <table class="table table-borderless">
-                                <h6 style="font-family:arial black">PSP COPY</h6>
+                                <h6 style="font-family:arial black;font-size:12">PSP COPY</h6>
                                 <thead>
                                     <th><span>Name</span></th>
                                     <th><span>Property Code</span></th>
@@ -260,17 +260,17 @@
                             </div>
             <!--                     <div class="clearfix"></div> -->
                             <div class="col-3">
-                                <div class="border-dotted border-dark rounded-0" style="width:auto; height:80px"></div>
+                                <div class="border-dotted border-dark rounded-0" style="width:auto; height:70px"></div>
                                 <span style="font-size:6px; line-height:0.5; top:0px">DATE, SIGNATURE and BANK STAMP</span>
                             </div>
                         </div>
                         
                         <!-- Table section -->
-                        <div class="row">
+                        <div class="row mb-2">
                             <table class="table table-borderless">
-                                <h6 style="font-family:arial black">LAWMA COPY</h6>
+                                <h6 style="font-family:arial black;font-size:12px">LAWMA COPY</h6>
                                 <thead>
-                                    <th colspan="2"><span>Name</span></th>
+                                    <th><span>Name</span></th>
                                     <th><span>Property Code</span></th>
                                     <th class="border-left border-dark"><span>Company Account Code</span></th>
                                     <th class="border-left border-dark"><span>Property Class</span></th>
@@ -298,7 +298,7 @@
                                 <div class="row">
                                     <div class="col-4 border border-dotted border-dark rounded-0 ml-2 mr-1" style="height:30px">
                                     </div>
-                                    <div class="col border border-dark">
+                                    <div class="col-7 border border-dark">
                                         <div class="row">
                                             <div class="col-2 pr-0 pl-0" style="font-size:11px">
                                                 PLEASE HELP US UPDATE OUR RECORD
@@ -306,14 +306,14 @@
                                             <div class="col-10">
                                                 <div class="row mt-2">
                                                     <div class="col-auto"><strong>Name</strong></div>
-                                                    <div class="col border-bottom border-dark rounded-0"></div>
+                                                    <div class="col-8 border-bottom border-dark rounded-0"></div>
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-auto"><strong>Address</strong></div>
-                                                    <div class="col border-bottom border-dark rounded-0"></div>
+                                                    <div class="col-8 border-bottom border-dark rounded-0"></div>
                                                 </div>
                                                 <div class="row mt-3">
-                                                    <div class="col border-bottom border-dark rounded-0"></div>
+                                                    <div class="col-12 border-bottom border-dark rounded-0"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -346,7 +346,7 @@
                                 </div>
                             </div>
                             <div class="col-3">
-                                <div class="border border-dotted border-dark rounded-0" style="width:auto; height:100px"></div>
+                                <div class="border border-dotted border-dark rounded-0" style="width:auto; height:70px"></div>
                                 <span style="font-size:6px; line-height:0.5; top:0px">DATE, SIGNATURE and BANK STAMP</span>
                             </div>
                         </div>
@@ -355,11 +355,11 @@
             </t><!-- .\end t-foreach//docs -->
         </t><!-- .\end web.html_container -->
     </template>
-<!--     <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
+    <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
       <xpath expr=".">
         <t>
             <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
         </t>
       </xpath>
-    </template> -->
+    </template>
 </odoo>
