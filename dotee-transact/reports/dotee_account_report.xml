@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="dotee_report_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="dotee-transact.external_layout_header_inherit_cr">
+                
+                <t t-if="not o" t-set="o" t-value="doc"/>
+
+                <t t-if="not company">
+                    <!-- Multicompany -->
+                    <t t-if="company_id">
+                        <t t-set="company" t-value="company_id"/>
+                    </t>
+                    <t t-elif="o and 'company_id' in o">
+                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                    </t>
+                    <t t-else="else">
+                        <t t-set="company" t-value="res_company"/>
+                    </t>
+                </t>
+                    <div class="page mt-3" style="font-size:12px; line-height:1.2">
+                        <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <!-- dotee-transact.external_layout_header_inherit_cr -->
+                                <img class="img-fluid img-logo" src="/dotee-transact/static/src/img/lawma.jpg" style="width:80px"/>
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid img-logo" src="/dotee-transact/static/src/img/lagos-logo.png" style="width:80px"/>
+                                <br />
+                                <span>
+                                    <address>
+                                        3, Otto Road, Ijora Olopa, Lagos<br />
+                                        E-mail: Info@lawma.gov.ng<br />
+                                        Website: www.lawma.gov.ng<br />
+                                    </address>
+                                </span>
+                            </div>
+                            <div class="col-4">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                                <p>
+                                    <div t-field="company.partner_id" t-options-widget="'contact'"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 py-2 px-2">
+                                <h4>Report title</h4>
+                                <p>Number: <span t-field="o.name"/></p>
+                                <table class="table" name="invoice_line_table">
+                                    <thead>
+                                        <tr>
+                                            <!-- TODO: remove in master -->
+                                            <t t-set="colspan" t-value="6"/>
+                                            <th name="th_description" class="text-left"><span>Description</span></th>
+                                            <th name="th_source" class="d-none text-left"><span>Source Document</span></th>
+                                            <th name="th_quantity" class="text-right"><span>Unit</span></th>
+                                            <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Unit Price</span></th>
+                                            <th name="th_price_unit" t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span>Disc.%</span>
+                                                <!-- TODO: remove in master -->
+                                                <t t-set="colspan" t-value="colspan+1"/>
+                                            </th>
+                                            <!--<th name="th_taxes" t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>-->
+                                            <th name="th_subtotal" class="text-right">
+                                                <span groups="account.group_show_line_subtotals_tax_excluded">Unit Price</span>
+                                                <span groups="account.group_show_line_subtotals_tax_included">Total</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="invoice_tbody">
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+
+                                        <t t-foreach="lines" t-as="line">
+                                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                                            <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                                <t t-if="not line.display_type" name="account_invoice_line_accountable">
+                                                    <td name="account_invoice_line_name"><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
+                                                    <td class="text-right">
+                                                        <span t-field="line.quantity"/>
+                                                        <span t-field="line.product_uom_id" groups="uom.group_uom"/>
+                                                    </td>
+                                                    <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                        <span t-field="line.price_unit"/>
+                                                    </td>
+                                                    <td t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                        <span t-field="line.discount"/>
+                                                    </td>
+                                                   <!-- <td t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                        <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>
+                                                    </td>-->
+                                                    <td class="text-right o_price_total">
+                                                        <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                        <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                                    </td>
+                                                </t>
+                                                <t t-if="line.display_type == 'line_section'">
+                                                    <td colspan="99">
+                                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                                    </td>
+                                                    <t t-set="current_section" t-value="line"/>
+                                                    <t t-set="current_subtotal" t-value="0"/>
+                                                </t>
+                                                <t t-if="line.display_type == 'line_note'">
+                                                    <td colspan="99">
+                                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                                    </td>
+                                                </t>
+                                            </tr>
+
+                                            <t t-if="current_section and (line_last or lines[line_index+1].display_type == 'line_section')">
+                                                <tr class="is-subtotal text-right">
+                                                    <td colspan="99">
+                                                        <strong class="mr16">Subtotal</strong>
+                                                        <span t-esc="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <div class="clearfix">
+                                    <div id="total" class="row">
+                                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                                            <table class="table table-sm;page-break-inside: avoid;">
+                                                <tr class="border-black o_subtotal" style="">
+                                                    <td><strong>Subtotal</strong></td>
+                                                    <td class="text-right">
+                                                        <span t-field="o.amount_untaxed"/>
+                                                    </td>
+                                                </tr>
+                                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                                    <tr style="">
+                                                        <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                                            <td><span t-esc="amount_by_group[0]"/></td>
+                                                            <td class="text-right o_price_total">
+                                                                <span t-esc="amount_by_group[3]"/>
+                                                            </td>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <td>
+                                                                <span t-esc="amount_by_group[0]"/>
+                                                                <span>&amp;nbsp;<span>on</span>
+                                                                    <t t-esc="amount_by_group[4]"/>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-right o_price_total">
+                                                                <span t-esc="amount_by_group[3]"/>
+                                                            </td>
+                                                        </t>
+                                                    </tr>
+                                                </t>
+                                                <tr class="border-black o_total">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-right">
+                                                        <span t-field="o.amount_total"/>
+                                                    </td> 
+                                                </tr>
+                                            </table><!-- \End table --> 
+                                        </div><!-- \End .col-4 -->
+                                    </div><!-- \End .row -->
+                                </div><!-- \End .clearfix -->
+                                <div class="col">
+                                    <span>
+                                        This bill is issued by LAWMA on behalf of the Lagos State Goverment by virtue of Section 18 of the Lagos Waste Management Authority Las No. 27. Vol. 40, Laws of Lagos State 2007. Any peson who fails or neglects to pay  the tariff, fees or charges prescribed by the Lagos Waste Management Authority commits an offence and is liable on conviction to a fine or imorisonment.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4" style="font-size:12px; line-height:1.2">
+                                <h4>Payment Options</h4>
+                                <br />
+                                <h6>USSD:</h6>
+                                <ol>
+                                    <li>Dial the applicable UUS string of your bank from your phones.</li>
+                                    <li>The applicable string to dial is diplayed upon selecting th preferred Funding Bank</li>
+                                </ol>
+
+                                <h6>Physical Channels:</h6>
+                                <ol>
+                                    <li>Proceed to any bank branch/collection point agent of your choice {like Paga}</li>
+                                    <li>Present RRR stated below and cash cover to teller/agent for processing</li>
+                                    <li> Obtain receipt for successful transaction</li>
+                                </ol>
+                                <h6>Digital Channels:</h6>
+                                <ol>
+                                    <li>Launch www.remita.net or www.doteetransact.com and click Pay an invoice</li>
+                                    <li>Enter the RRR stated below and click continue</li>
+                                    <li>Confirm payment details and click submit</li>
+                                    <li>Choose desired payment option and follow instructions to conclude payment</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-3">
+                            <p>
+                                <span>
+                                    <strong>Reference Code:</strong>
+                                </span>
+                                <span t-field="o.ref"/>
+                            </p>
+                            <p>
+                                <span>
+                                    <strong>Property Code:</strong>
+                                </span> 
+                                <!-- <span t-field="o.x_studio_customer_payment_number"/> -->
+                            </p>
+                          </div>
+                          <div class="col-5">
+                            <span>
+                              <div>Dear Customer</div>
+                              <div>Please call LAWMA response lines</div>
+                              <div>5577 (free from Glo) or 07080601020</div>
+                              <div>or PSP number<span t-field="o.company_id.phone"/></div>
+                            </span>
+                          </div>
+                          <div class="col-4">
+                            <span>New Column</span>
+                          </div>
+                        </div>
+<!--                         <t t-call="dotee-transact.external_layout_footer_inherit_cr"/> -->
+
+                        <div class="row mb-2">
+                            <table class="table table-borderless">
+                                <h6 style="font-family:arial black;font-size:12">PSP COPY</h6>
+                                <thead>
+                                    <th><span>Name</span></th>
+                                    <th><span>Property Code</span></th>
+                                    <th class="border-left border-dark"><span>Company Account Code</span></th>
+                                    <th class="border-left border-dark"><span>Property Class</span></th>
+                                    <th class="border-left border-dark"><span>Amount Due</span></th>
+                                    <th class="border-left border-dark"><span>Invoice Month</span></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="border-left border-dark"></td>
+                                        <td class="border-left border-dark"></td>
+                                        <td class="border-left border-dark"></td>
+                                        <td class="border-left border-dark"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- .\end Table Section -->
+                        <div class="row">
+                            <div class="col-9">
+                                <span><strong>Amount Paid</strong></span><br />
+            <!--                         <p class="border border-dark rounded-0" style="width:50%; height: 40px"></p> -->
+                                    <div class="col-3 border border-dotted border-dark rounded-0 pl-0 ml-0" style="height:30px">
+                                    </div>
+                                <div class="row mt-1">
+                                    <div class="col-4">Amount paid in words:</div>
+                                    <div class="border-bottom border-dotted border-dark rounded-0 col-8"></div>
+                                </div>
+                            </div>
+            <!--                     <div class="clearfix"></div> -->
+                            <div class="col-3">
+                                <div class="border-dotted border-dark rounded-0" style="width:auto; height:70px"></div>
+                                <span style="font-size:6px; line-height:0.5; top:0px">DATE, SIGNATURE and BANK STAMP</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Table section -->
+                        <div class="row mb-2">
+                            <table class="table table-borderless">
+                                <h6 style="font-family:arial black;font-size:12px">LAWMA COPY</h6>
+                                <thead>
+                                    <th><span>Name</span></th>
+                                    <th><span>Property Code</span></th>
+                                    <th class="border-left border-dark"><span>Company Account Code</span></th>
+                                    <th class="border-left border-dark"><span>Property Class</span></th>
+                                    <th class="border-left border-dark"><span>Amount Due</span></th>
+                                    <th class="border-left border-dark"><span>Invoice Month</span></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="border-left border-dark"></td>
+                                        <td class="border-left border-dark"></td>
+                                        <td class="border-left border-dark"></td>
+                                        <td class="border-left border-dark"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- .\end Table Section -->
+                        
+                        <div class="row">
+                            <div class="col-7">
+                                <span><strong>Amount Paid</strong></span><br />
+            <!--                         <p class="border rounded-0" style="width:50%; height: 40px"></p> -->
+                                <div class="row">
+                                    <div class="col-4 border border-dotted border-dark rounded-0 ml-2 mr-1" style="height:30px">
+                                    </div>
+                                    <div class="col-7 border border-dark">
+                                        <div class="row">
+                                            <div class="col-2 pr-0 pl-0" style="font-size:11px">
+                                                PLEASE HELP US UPDATE OUR RECORD
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="row mt-2">
+                                                    <div class="col-auto"><strong>Name</strong></div>
+                                                    <div class="col-8 border-bottom border-dark rounded-0"></div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-auto"><strong>Address</strong></div>
+                                                    <div class="col-8 border-bottom border-dark rounded-0"></div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-12 border-bottom border-dark rounded-0"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Amount paid in words:</div>
+                                    <div class="border-bottom border-dark rounded-0 col-8"></div>
+                                </div>
+                            </div>
+                            <div class="col-2 border border-dark rounded-0 pl-1">
+                                <span>Are you satisfied with our services?</span>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        YES
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        NO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        NOT SURE
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="border border-dotted border-dark rounded-0" style="width:auto; height:70px"></div>
+                                <span style="font-size:6px; line-height:0.5; top:0px">DATE, SIGNATURE and BANK STAMP</span>
+                            </div>
+                        </div>
+                    </div><!-- .\end .page -->
+                </t><!-- .\end web.internal_layout -->
+            </t><!-- .\end t-foreach//docs -->
+        </t><!-- .\end web.html_container -->
+    </template>
+    <!-- <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
+      <xpath expr=".">
+        <t>
+            <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
+        </t>
+      </xpath>
+    </template> -->
+</odoo>
