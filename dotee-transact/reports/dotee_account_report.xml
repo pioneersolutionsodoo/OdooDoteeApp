@@ -20,6 +20,7 @@
                     </t>
                 </t>
                     <div class="page mt-3" style="font-size:12px; line-height:1.2">
+                        <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
                         <div class="row">
                             <div class="col-4">
                                 <!-- dotee-transact.external_layout_header_inherit_cr -->
@@ -355,11 +356,11 @@
             </t><!-- .\end t-foreach//docs -->
         </t><!-- .\end web.html_container -->
     </template>
-    <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
+    <!-- <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
       <xpath expr=".">
         <t>
             <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
         </t>
       </xpath>
-    </template>
+    </template> -->
 </odoo>
