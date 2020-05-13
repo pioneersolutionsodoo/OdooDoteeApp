@@ -5,6 +5,7 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="dotee-transact.external_layout_header_inherit_cr">
                 
+                    <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
                     <!--<div class="page" style="font-size:12px;line-height:1.2">-->
                     <div class="page px-0">
                       <div class="container-fluid mt-3 h-100">

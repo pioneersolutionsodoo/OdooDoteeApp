@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="external_layout_header_inherit_cr">
-        <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
     
         <t t-if="not o" t-set="o" t-value="doc"/>
 
