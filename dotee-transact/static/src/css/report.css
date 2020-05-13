@@ -5,6 +5,13 @@
 .page{
     background:#f2b23a url('/dotee-transact/static/src/img/body.PNG') repeat;
     background-position:top left;
+	position: relative;
+	page-break-after: always;
+	margin: 0;
+	padding: 0;
+	width: 21cm;
+	height: 29.5cm;
+	overflow: hidden;
 }
 .border-dotted{
     border-style: dotted !important;
