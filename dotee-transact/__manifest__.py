@@ -28,8 +28,10 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'reports/report_billing_header.xml',
         'reports/report_header_footer.xml',
         'reports/dotee_account_report.xml',
+		'reports/dotee_billing_report.xml',
         'reports/report.xml',
     ],
     # only loaded in demonstration mode

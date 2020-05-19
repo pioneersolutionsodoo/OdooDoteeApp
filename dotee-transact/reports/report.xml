@@ -29,8 +29,8 @@
         model="account.move"
         string="Dotee Billing"
         report_type="qweb-pdf"
-        name="dotee-transact.dotee_report_billing"
-        file="dotee-transact.dotee_report_billing"
+        name="dotee-transact.dotee_billing_invoice"
+        file="dotee-transact.dotee_billing_invoice"
         attachment_use="True"
         attachment="(object.state in ('open','paid')) and
             ('INV'+(object.number or '').replace('/','')+'.pdf')"
