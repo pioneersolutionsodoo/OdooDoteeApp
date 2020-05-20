@@ -18,6 +18,8 @@
         </t>
 
         <div class="header">
+            
+            <!-- <div class="background"></div> -->
           <div class="row">
             <div class="col-12 d-sm-flex align-items-center justify-content-between mt-4">
               <h4 class="text-center">LAGOS WASTE MANAGEMENT AUTHORITY</h4>
@@ -52,6 +54,14 @@
           <t t-raw="0"/>
         </div>
         <div class="footer">
+            <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
+            <div class="row">
+                <div class="col-8 py-2 px-2" style="font-size:12px">
+                    <span>
+                        This bill is issued by LAWMA on behalf of the Lagos State Goverment by virtue of Section 18 of the Lagos Waste Management Authority Las No. 27. Vol. 40, Laws of Lagos State 2007. Any peson who fails or neglects to pay  the tariff, fees or charges prescribed by the Lagos Waste Management Authority commits an offence and is liable on conviction to a fine or imorisonment.
+                    </span>
+                </div>
+            </div>
           <div class="row">
             <div class="col-3">
               <p>
@@ -88,7 +98,7 @@
                 </div>
                 <div class="col-7" style="color:#fa4d4d">
                     <span>RRR Code:</span>
-                    <span t-field="o.x_RRR_Code"/>
+                    <!-- <span t-field="o.x_RRR_Code"/> -->
                 </div>
                 
               </div>

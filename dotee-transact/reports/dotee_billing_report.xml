@@ -7,7 +7,7 @@
                     <div class="page">
                         <div class="row">
                             <div class="col-3 text-left">
-                                <attribute t-field="o.partner_id" t-options-widget="'contact'">['name', 'address']</attribute>
+                                <div t-field="o.partner_id" t-options-widget="'contact'"/>
                             </div>
                         </div>
                         <div class="col-8">
@@ -98,6 +98,11 @@
                                                 </t>
                                             </tr>
                                         </t>
+                                        <tr>
+                                            <td class="text-right">
+                                                <span t-field="o.amount_residual"/>
+                                            </td> 
+                                        </tr>
                                         <tr>
                                             <!-- <td><strong>Total</strong></td> -->
                                             <td class="text-right">

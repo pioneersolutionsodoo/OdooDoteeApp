@@ -5,10 +5,11 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="dotee-transact.external_layout_header_inherit_cr">
                 
-                    <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
+                    <!-- <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/> -->
                     <!--<div class="page" style="font-size:12px;line-height:1.2">-->
                     <div class="page px-0">
-                      <div class="container-fluid mt-3 h-100">
+                        <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
+                      <div class="container-fluid h-100">
                         <div class="row">
                             <div class="col-8 py-2 px-2">
                                 <div class="col-8">
@@ -103,10 +104,10 @@
                                 <div class="clearfix">
                                     <div id="total" class="row">
                                         <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
-                                            <table class="table table-sm;page-break-inside: avoid;">
-                                                <tr class="o_subtotal" style="">
-                                                    <td><strong>Current Charges</strong></td>
-                                                    <td class="text-right">
+                                            <table class="table table-borderless table-sm;page-break-inside: avoid;">
+                                                <tr>
+                                                    <td style="width:auto"><strong>Current Charges</strong></td>
+                                                    <td class="text-right border-bottom border-dark">
                                                         <span t-field="o.amount_untaxed"/>
                                                     </td>
                                                 </tr>
@@ -131,8 +132,14 @@
                                                         </t>
                                                     </tr>
                                                 </t>
-                                                <tr class="o_total">
-                                                    <td><strong>Total</strong></td>
+                                                <tr>
+                                                    <td style="width:auto"><strong>Net Arrears</strong></td>
+                                                    <td class="text-right border-bottom border-dark">
+                                                        <span t-field="o.amount_residual"/>
+                                                    </td> 
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:auto"><strong>Total</strong></td>
                                                     <td class="text-right border-bottom border-dark">
                                                         <span t-field="o.amount_total"/>
                                                     </td> 
@@ -141,11 +148,6 @@
                                         </div><!-- \End .col-4 -->
                                     </div><!-- \End .row -->
                                 </div><!-- \End .clearfix -->
-                                <div class="col">
-                                    <span>
-                                        This bill is issued by LAWMA on behalf of the Lagos State Goverment by virtue of Section 18 of the Lagos Waste Management Authority Las No. 27. Vol. 40, Laws of Lagos State 2007. Any peson who fails or neglects to pay  the tariff, fees or charges prescribed by the Lagos Waste Management Authority commits an offence and is liable on conviction to a fine or imorisonment.
-                                    </span>
-                                </div>
                             </div>
                             <div class="col-4" style="font-size:12px; line-height:1.2">
                                 <h4 style="color:#fa4d4d">Payment Options</h4>
@@ -176,6 +178,20 @@
                 </t><!-- .\end web.internal_layout -->
             </t><!-- .\end t-foreach//docs -->
         </t><!-- .\end web.html_container -->    
+    </template>
+    <template id="dotee_report_invoice_style" inherit_id="dotee-transact.external_layout_header_inherit_cr">
+
+        <xpath expr="//div[@class='header']" position="inside">
+            <!-- <t> -->
+                <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
+                <style>
+                    html{
+                        height:auto !important;
+                    }
+                </style>
+            <!-- </t> -->
+        </xpath>
+
     </template>
     <!-- <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
       <xpath expr=".">
