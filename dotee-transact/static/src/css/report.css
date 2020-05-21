@@ -26,11 +26,6 @@ body{
 	/* background: inherit !important; */
 	/* z-index: 999 !important; */
 }
-.header, .footer{
-	/* background: inherit !important; */
-	height: 100% !important;
-	/* z-index: 9999 !important; */
-}
 .border-dotted{
     border-style: dotted !important;
 }
