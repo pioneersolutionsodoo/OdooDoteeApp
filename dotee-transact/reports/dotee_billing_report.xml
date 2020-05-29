@@ -10,7 +10,7 @@
                                 <div t-field="o.partner_id" t-options-widget="'contact'"/>
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="col-8 mt-4">
                             <table class="table table-borderless" name="invoice_line_table" style="color:#000">
                                 <tbody class="invoice_tbody pt-1">
                                     <t t-set="current_subtotal" t-value="0"/>
