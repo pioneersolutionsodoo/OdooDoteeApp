@@ -21,13 +21,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'account'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/account_move_view.xml',
+        # 'views/templates.xml',
         'reports/report_billing_header.xml',
         'reports/report_header_footer.xml',
         'reports/dotee_account_report.xml',
