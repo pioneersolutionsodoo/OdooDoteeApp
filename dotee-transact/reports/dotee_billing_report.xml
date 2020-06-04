@@ -7,6 +7,7 @@
                     <div class="page">
                         <div class="row">
                             <div class="col-3 text-left">
+                                <div t-field="o.partner_id.x_customer_payment_id"/>
                                 <div t-field="o.partner_id" t-options-widget="'contact'"/>
                             </div>
                         </div>
@@ -22,7 +23,7 @@
 
                                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                                             <t t-if="not line.display_type" name="account_invoice_line_accountable">
-                                                <td name="account_invoice_line_name"><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
+                                                <td name="account_invoice_line_name"><span t-field="line.x_studio_structure" t-options="{'widget': 'text'}"/></td>
                                                 <td class="text-center">
                                                     <span t-field="line.quantity"/>
                                                     <span t-field="line.product_uom_id" groups="uom.group_uom"/><br />
@@ -77,7 +78,7 @@
                                                 <span t-field="o.amount_untaxed"/>
                                             </td>
                                         </tr>
-                                        <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                        <!-- <t t-foreach="o.amount_by_group" t-as="amount_by_group">
                                             <tr>
                                                 <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">
                                                     <td><span t-esc="amount_by_group[0]"/></td>
@@ -88,16 +89,16 @@
                                                 <t t-else="">
                                                     <td>
                                                         <span t-esc="amount_by_group[0]"/>
-                                                        <!-- <span>&amp;nbsp;<span>on</span> -->
+                                                         <span>&amp;nbsp;<span>on</span> 
                                                             <t t-esc="amount_by_group[4]"/>
-                                                        <!-- </span> -->
+                                                         </span>
                                                     </td>
                                                     <td class="text-right">
                                                         <span t-esc="amount_by_group[3]"/>
                                                     </td>
                                                 </t>
                                             </tr>
-                                        </t>
+                                        </t> -->
                                         <tr>
                                             <td class="text-right">
                                                 <span t-field="o.amount_residual"/>

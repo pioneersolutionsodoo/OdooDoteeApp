@@ -24,16 +24,23 @@
           <t t-raw="0"/>
         </div>
         <div class="footer">
-            <div class="row">
-                <div class="col-8">
-                    <span class="text-left" t-field="o.partner_id"/>
-                    <!-- <span class="text-right" t-field="o.x_studio_property_code"/> -->
+            <t t-foreach="range(2)" t-as="l">
+                <div class="row mt-5">
+                    <div class="col-4">
+                        <span class="text-left" t-field="o.partner_id"/><br />
+                        <t t-if="(l) == 1">
+                            <span class="text-left" t-field="o.partner_id.contact_address"/>
+                        </t>
+                    </div>
+                    <div class="col-5">
+                        <span class="text-left" t-field="o.partner_id.x_customer_payment_id"/>
+                    </div>
+                    <div class="col-3">
+                        <span t-field="o.amount_total"/><br />
+                        <span class="text-right">April 2020 - May 2020</span>
+                    </div>
                 </div>
-                <div class="col-4">
-                    <span t-field="o.amount_total"/><br />
-                    <span class="text-right">April 2020 - May 2020</span>
-                </div>
-            </div>
+            </t>
         </div>
     </template>
 </odoo>

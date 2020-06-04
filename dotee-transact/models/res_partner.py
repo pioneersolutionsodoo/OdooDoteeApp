@@ -3,14 +3,14 @@ from odoo import api, fields, models, api, _
 from odoo.exceptions import AccessError, UserError, ValidationError
 
 
-class AccountMoveLine(models.Model):
+class Partner(models.Model):
 #     _name = 'dotee-transact.dotee-transact'
 #     _description = 'dotee-transact.dotee-transact'
-    _inherit = "account.move.line"
+    _inherit = "res.partner"
 
-    unit_vacant = fields.Integer('Vacant', store=True)
+    x_customer_payment_id = fields.Char('Property Code')
 
-    x_studio_structure = fields.Char('Structure')
+    # x_studio_computed_charge = fields.Monetary()
 
 
 
