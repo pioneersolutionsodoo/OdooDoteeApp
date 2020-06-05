@@ -21,12 +21,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account'],
+    'depends': ['base', 'account', 'sale_subscription'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/account_move_view.xml',
+        'views/subscription_view.xml',
         # 'views/templates.xml',
         'reports/report_billing_header.xml',
         'reports/report_header_footer.xml',
