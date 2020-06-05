@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import api, fields, models, api, _
 
 class Subscription(models.Model):
     _inherit = 'sale.subscription'
