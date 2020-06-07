@@ -9,6 +9,7 @@ class Partner(models.Model):
     _inherit = "res.partner"
 
     x_customer_payment_id = fields.Char('Property Code')
+    
 
     # x_studio_computed_charge = fields.Monetary()
 
