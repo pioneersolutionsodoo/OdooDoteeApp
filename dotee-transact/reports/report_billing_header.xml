@@ -24,10 +24,62 @@
           <t t-raw="0"/>
         </div>
         <div class="footer">
+            
+            <div class="clearfix"  style="padding-bottom:150px">
+                <div id="total" class="row">
+                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} offset-4">
+                        <table class="table table-borderless text-dark table-sm;page-break-inside: avoid;">
+                            <tr class="my-0 py-0">
+                                <!-- <td><strong>Current Charges</strong></td> -->
+                                <td class="text-right my-0 py-0">
+                                    <span t-field="o.amount_untaxed"/>
+                                </td>
+                            </tr>
+                            <!-- <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                <tr>
+                                    <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                        <td><span t-esc="amount_by_group[0]"/></td>
+                                        <td class="text-right">
+                                            <span t-esc="amount_by_group[3]"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td>
+                                            <span t-esc="amount_by_group[0]"/>
+                                             <span>&amp;nbsp;<span>on</span> 
+                                                <t t-esc="amount_by_group[4]"/>
+                                             </span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="amount_by_group[3]"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t> -->
+                            <tr class="my-0 py-0">
+                                <td class="text-right my-0 py-0">
+                                    <span t-field="o.dotee_total_overdue"/>
+                                </td> 
+                            </tr>
+                            <tr class="my-0 py-0">
+                                <!-- <td><strong>Total</strong></td> -->
+                                <td class="text-right my-0 py-0">
+                                    <span t-field="o.x_studio_total_overdue"/>
+                                </td> 
+                            </tr>
+                        </table><!-- \End table --> 
+<!--                                     <div class="col-6 offset-9">
+                            <div class="text-right">
+                                <span t-field="o.x_studio_total_overdue"/>
+                            </div>
+                        </div> -->
+                    </div><!-- \End .col-4 -->
+                </div><!-- \End .row -->
+            </div><!-- \End .clearfix -->
             <t t-foreach="range(2)" t-as="l">
-                <div class="row mt-5">
+                <div class="row pl-4" style="padding-top:180px">
                     <div class="col-4">
-                        <span class="text-left" t-field="o.partner_id"/><br />
+                        <span class="text-left" t-field="o.partner_id"/><br/>
                         <t t-if="(l) == 1">
                             <span class="text-left" t-field="o.partner_id.contact_address"/>
                         </t>
@@ -36,8 +88,10 @@
                         <span class="text-left" t-field="o.partner_id.x_customer_payment_id"/>
                     </div>
                     <div class="col-3">
-                        <span t-field="o.amount_total"/><br />
-                        <span class="text-right">April 2020 - May 2020</span>
+                        <span t-field="o.x_studio_total_overdue"/><br/>
+                        <span class="text-right" t-field="o.invoice_date"/>
+                        <span class="text-right">-</span>
+                        <span class="text-right" t-field="o.invoice_date_due"/>
                     </div>
                 </div>
             </t>
