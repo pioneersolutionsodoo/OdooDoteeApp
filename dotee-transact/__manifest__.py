@@ -23,6 +23,7 @@
     # any module necessary for this one to work correctly
     'depends': ['base', 'account', 'sale_subscription'],
 
+
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
