@@ -3,14 +3,30 @@
     <template id="dotee_report_invoice">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.internal_layout">
-                    <div class="page">
+                <t t-call="dotee_transact.external_layout_header_inherit_cr">
+                
+                    <!-- <link rel="stylesheet" href="/dotee_transact/static/src/css/report.css"/> -->
+                    <!--<div class="page" style="font-size:12px;line-height:1.2">-->
+                    <div class="page px-0">
+                        <link rel="stylesheet" href="/dotee_transact/static/src/css/report.css"/>
+                      <div class="container-fluid h-100">
                         <div class="row">
                             <div class="col-8 py-2 px-2">
-                                <h2>Report title</h2>
-                                <p>Number: <span t-field="o.name"/></p>
-                                <table class="table" name="invoice_line_table">
-                                    <thead>
+                                <div class="col-8">
+                                    <h6 class="text-right" style="font-size:12px">PlACING OUR CUSTOMERS<br />AND THE ENVIRONMENT FIRST</h6>
+                                    <table class="table table-borderless" style="color:#000">
+                                        <thead class="border border-dark">
+                                            <th>BILL SUMMARY</th>
+                                        </thead>
+                                        <tbody class="border border-dark">
+                                            <tr style="height:50px">
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <table class="table table-borderless" name="invoice_line_table" style="color:#000">
+                                    <thead class="border border-dark" style="background:#c7c7c7">
                                         <tr>
                                             <!-- TODO: remove in master -->
                                             <t t-set="colspan" t-value="6"/>
@@ -25,12 +41,12 @@
                                             </th>
                                             <!--<th name="th_taxes" t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>-->
                                             <th name="th_subtotal" class="text-right">
-                                                <span groups="account.group_show_line_subtotals_tax_excluded">Unit Price</span>
+                                                <span groups="account.group_show_line_subtotals_tax_excluded">Total</span>
                                                 <span groups="account.group_show_line_subtotals_tax_included">Total</span>
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody class="invoice_tbody">
+                                    <tbody class="invoice_tbody border border-dark pt-1">
                                         <t t-set="current_subtotal" t-value="0"/>
                                         <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
 
@@ -88,10 +104,10 @@
                                 <div class="clearfix">
                                     <div id="total" class="row">
                                         <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
-                                            <table class="table table-sm;page-break-inside: avoid;">
-                                                <tr class="border-black o_subtotal" style="">
-                                                    <td><strong>Subtotal</strong></td>
-                                                    <td class="text-right">
+                                            <table class="table table-borderless table-sm;page-break-inside: avoid;">
+                                                <tr>
+                                                    <td style="width:auto"><strong>Current Charges</strong></td>
+                                                    <td class="text-right border-bottom border-dark">
                                                         <span t-field="o.amount_untaxed"/>
                                                     </td>
                                                 </tr>
@@ -116,9 +132,15 @@
                                                         </t>
                                                     </tr>
                                                 </t>
-                                                <tr class="border-black o_total">
-                                                    <td><strong>Total</strong></td>
-                                                    <td class="text-right">
+                                                <tr>
+                                                    <td style="width:auto"><strong>Net Arrears</strong></td>
+                                                    <td class="text-right border-bottom border-dark">
+                                                        <span t-field="o.amount_residual"/>
+                                                    </td> 
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:auto"><strong>Total</strong></td>
+                                                    <td class="text-right border-bottom border-dark">
                                                         <span t-field="o.amount_total"/>
                                                     </td> 
                                                 </tr>
@@ -126,18 +148,13 @@
                                         </div><!-- \End .col-4 -->
                                     </div><!-- \End .row -->
                                 </div><!-- \End .clearfix -->
-                                <div class="col">
-                                    <span>
-                                        This bill is issued by LAWMA on behalf of the Lagos State Goverment by virtue of Section 18 of the Lagos Waste Management Authority Las No. 27. Vol. 40, Laws of Lagos State 2007. Any peson who fails or neglects to pay  the tariff, fees or charges prescribed by the Lagos Waste Management Authority commits an offence and is liable on conviction to a fine or imorisonment.
-                                    </span>
-                                </div>
                             </div>
                             <div class="col-4" style="font-size:12px; line-height:1.2">
-                                <h2>Payment Options</h2>
-                                <br />
+                                <h4 style="color:#fa4d4d">Payment Options</h4>
+                                <br/>
                                 <h6>USSD:</h6>
                                 <ol>
-                                    <li>Dial the applicable UUS string of your bank from your phones.</li>
+                                    <li>Dial the applicable USSD string of your bank from your phones.</li>
                                     <li>The applicable string to dial is diplayed upon selecting th preferred Funding Bank</li>
                                 </ol>
 
@@ -156,43 +173,30 @@
                                 </ol>
                             </div>
                         </div>
-                        <div class="row">
-                          <div class="col-3">
-                            <p>
-                                <span>
-                                    <strong>Reference Code:</strong>
-                                </span>
-                                <span t-field="o.ref"/>
-                            </p>
-                            <p>
-                                <span>
-                                    <strong>Property Code:</strong>
-                                </span> 
-                                <span t-field="o.x_studio_customer_payment_number"/>
-                            </p>
-                          </div>
-                          <div class="col-5">
-                            <span>
-                              <div>Dear Customer</div>
-                              <div>Please call LAWMA response lines</div>
-                              <div>5577 (free from Glo) or 07080601020</div>
-                              <div>or PSP number</div>
-                            </span>
-                          </div>
-                          <div class="col-4">
-                            <span>New Column</span>
-                          </div>
-                        </div>
-<!--                         <t t-call="dotee-transact.external_layout_footer_inherit_cr"/> -->
+                      </div>
                     </div><!-- .\end .page -->
                 </t><!-- .\end web.internal_layout -->
             </t><!-- .\end t-foreach//docs -->
-        </t><!-- .\end web.html_container -->
+        </t><!-- .\end web.html_container -->    
     </template>
-<!--     <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
+    <template id="dotee_report_invoice_style" inherit_id="dotee_transact.external_layout_header_inherit_cr">
+
+        <xpath expr="//div[@class='header']" position="inside">
+            <!-- <t> -->
+                <link rel="stylesheet" href="/dotee_transact/static/src/css/report.css"/>
+                <style>
+                    html{
+                        height:auto !important;
+                    }
+                </style>
+            <!-- </t> -->
+        </xpath>
+
+    </template>
+    <!-- <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
       <xpath expr=".">
         <t>
-            <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
+            <link rel='stylesheet' href="/dotee_transact/static/src/css/report.css"/>
         </t>
       </xpath>
     </template> -->

@@ -24,8 +24,15 @@
           <t t-raw="0"/>
         </div>
         <div class="footer">
+             
+            <span t-set="d_delta" t-value="relativedelta(months=o.period -1)"/>
+
+<!--                         <span t-set="d_dateorder" t-value="datetime.datetime.strptime(o.invoice_date,'%Y-%m-%d %H:%M:%S')"/> -->
+
+            <span t-set="d_paydate" t-value="o.invoice_date + d_delta"/>
             
-            <div class="clearfix"  style="padding-bottom:150px">
+
+            <div class="clearfix"  style="padding-bottom:140px">
                 <div id="total" class="row">
                     <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} offset-4">
                         <table class="table table-borderless text-dark table-sm;page-break-inside: avoid;">
@@ -68,6 +75,11 @@
                                 </td> 
                             </tr>
                         </table><!-- \End table --> 
+                        <div class="col-6" style="position:absolute;right:-395px">
+                            <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
+                            <span>-</span>
+                            <span t-esc="d_paydate.strftime('%b %Y')"/>
+                        </div>
 <!--                                     <div class="col-6 offset-9">
                             <div class="text-right">
                                 <span t-field="o.x_studio_total_overdue"/>
@@ -77,21 +89,28 @@
                 </div><!-- \End .row -->
             </div><!-- \End .clearfix -->
             <t t-foreach="range(2)" t-as="l">
-                <div class="row pl-4" style="padding-top:180px">
-                    <div class="col-4">
-                        <span class="text-left" t-field="o.partner_id"/><br/>
+                <div class="row pl-5" style="padding-top:180px">
+                    <div class="col-4 pl-3 text-left" style="line-height:13px">
+                        <span t-field="o.partner_id"/><br/>
                         <t t-if="(l) == 1">
                             <span class="text-left" t-field="o.partner_id.contact_address"/>
                         </t>
                     </div>
-                    <div class="col-5">
+                    <div class="col-4 px-0">
                         <span class="text-left" t-field="o.partner_id.x_customer_payment_id"/>
                     </div>
+                    <div class="col-2 pr-0 text-right">
+                        <span t-field="o.x_studio_total_overdue"/>
+                    </div>
                     <div class="col-3">
-                        <span t-field="o.x_studio_total_overdue"/><br/>
-                        <span class="text-right" t-field="o.invoice_date"/>
-                        <span class="text-right">-</span>
-                        <span class="text-right" t-field="o.invoice_date_due"/>
+                        <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
+                        <span>-</span>
+                        <span t-esc="d_paydate.strftime('%b %Y')"/>
+<!--                         <span t-esc="datetime.datetime.strptime('08/24/2020', '%m/$d/%Y')" /> -->
+                        <t t-foreach="datefinder.find_dates('This invoice covers the following period: 08/24/2020 - 08/24/2020')" t-as="match">
+                            <span>Date: </span>
+                            <span class="text-right" t-esc="match"/>
+                        </t>
                     </div>
                 </div>
             </t>
