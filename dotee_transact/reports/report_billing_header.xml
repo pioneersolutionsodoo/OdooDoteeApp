@@ -94,7 +94,7 @@
                 </div><!-- \End .row -->
             </div><!-- \End .clearfix -->
             <t t-foreach="range(2)" t-as="l">
-                <div class="row pl-5" style="padding-top:190px">
+                <div class="row pl-5" style="padding-top:200px">
                     <div class="col-4 pl-3 text-left" style="line-height:15px">
                         <span t-field="o.partner_id"/><br/>
                         <t t-if="(l) == 1">
