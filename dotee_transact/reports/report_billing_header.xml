@@ -32,7 +32,7 @@
             <span t-set="d_paydate" t-value="o.invoice_date + d_delta"/>
             
 
-            <div class="clearfix"  style="padding-bottom:140px">
+            <div class="clearfix"  style="padding-bottom:150px">
                 <div id="total" class="row">
                     <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} offset-4">
                         <table class="table table-borderless text-dark table-sm;page-break-inside: avoid;">
@@ -75,7 +75,7 @@
                                 </td> 
                             </tr>
                         </table><!-- \End table --> 
-                        <div class="col-6" style="position:absolute;right:-395px">
+                        <div class="col-6" style="position:absolute;right:-390px">
                             <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
                             <span>-</span>
                             <span t-esc="d_paydate.strftime('%b %Y')"/>
@@ -89,8 +89,8 @@
                 </div><!-- \End .row -->
             </div><!-- \End .clearfix -->
             <t t-foreach="range(2)" t-as="l">
-                <div class="row pl-5" style="padding-top:180px">
-                    <div class="col-4 pl-3 text-left" style="line-height:13px">
+                <div class="row pl-5" style="padding-top:190px">
+                    <div class="col-4 pl-3 text-left" style="line-height:15px">
                         <span t-field="o.partner_id"/><br/>
                         <t t-if="(l) == 1">
                             <span class="text-left" t-field="o.partner_id.contact_address"/>
