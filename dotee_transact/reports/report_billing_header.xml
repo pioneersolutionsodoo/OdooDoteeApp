@@ -25,6 +25,11 @@
         </div>
         <div class="footer">
              
+            <style>
+                .footer{
+                    font-size:16px;
+                }
+            </style>
             <span t-set="d_delta" t-value="relativedelta(months=o.period -1)"/>
 
 <!--                         <span t-set="d_dateorder" t-value="datetime.datetime.strptime(o.invoice_date,'%Y-%m-%d %H:%M:%S')"/> -->

@@ -5,6 +5,11 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="dotee_transact.external_layout_billing_header_inherit_cr">
                     <div class="page">
+                        <style>
+                            body{
+                                font-size:16px;
+                            }
+                        </style>
                         <div class="row pl-5">
                             <div class="col-3 text-left">
                                 <strong>Property Code:</strong>
