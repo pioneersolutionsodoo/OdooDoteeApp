@@ -31,7 +31,7 @@
                                             <t t-if="not line.display_type" name="account_invoice_line_accountable">
                                                 <td name="account_invoice_line_name" class="my-0 py-0"><span t-field="line.x_studio_structure" t-options="{'widget': 'text'}"/></td>
                                                 <td class="text-center my-0 py-0">
-                                                    <span t-esc="int((line.quantity / line.period)-line.unit_vacant)"/>
+                                                    <span t-esc="int((line.quantity / line.period)+line.unit_vacant)"/>
                                                     <span t-field="line.product_uom_id" groups="uom.group_uom"/><br/>
                                                     Vacant <span t-esc="int(line.unit_vacant)"/>
                                                 </td>
