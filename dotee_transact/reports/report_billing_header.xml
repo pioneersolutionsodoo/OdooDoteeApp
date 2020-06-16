@@ -39,7 +39,7 @@
             <span t-set="d_paydate" t-value="o.invoice_date + d_delta"/>
             
 
-            <div class="clearfix"  style="padding-bottom:150px">
+            <div class="clearfix"  style="padding-bottom:140px">
                 <div id="total" class="row">
                     <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} offset-4">
                         <table class="table table-borderless text-dark table-sm;page-break-inside: avoid;">
