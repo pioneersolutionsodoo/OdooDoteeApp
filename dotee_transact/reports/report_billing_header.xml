@@ -82,7 +82,7 @@
                                 </td> 
                             </tr>
                         </table><!-- \End table --> 
-                        <div class="col-6" style="position:absolute;right:-390px">
+                        <div class="col-7" style="position:absolute;right:-390px">
                             <!-- <span t-esc="'{:%b %Y}'.format(o.invoice_date)" /> -->
                             <span t-esc="start_paydate.strftime('%b %Y')" />
                             <span>-</span>
@@ -110,7 +110,7 @@
                     <div class="col-3 pr-0 text-right">
                         <span t-field="o.x_studio_total_overdue"/>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 text-right">
                         <!-- <span t-esc="'{:%b %Y}'.format(o.invoice_date)" /> -->
                         <span t-esc="start_paydate.strftime('%b %Y')" />
                         <span>-</span>
