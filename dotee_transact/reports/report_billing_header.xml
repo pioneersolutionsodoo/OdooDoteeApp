@@ -107,10 +107,10 @@
                     <div class="col-3 px-0">
                         <span class="text-left" t-field="o.partner_id.x_customer_payment_id"/>
                     </div>
-                    <div class="col-3 pl-2 text-right">
+                    <div class="col-3 px-0 text-right">
                         <span t-field="o.x_studio_total_overdue"/>
                     </div>
-                    <div class="col-3 text-right">
+                    <div class="col-3 px-0 text-right">
                         <!-- <span t-esc="'{:%b %Y}'.format(o.invoice_date)" /> -->
                         <span t-esc="start_paydate.strftime('%b %Y')" />
                         <span>-</span>
