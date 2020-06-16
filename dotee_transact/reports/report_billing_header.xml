@@ -98,16 +98,16 @@
             </div><!-- \End .clearfix -->
             <t t-foreach="range(2)" t-as="l">
                 <div class="row pl-5" style="padding-top:200px">
-                    <div class="col-4 pl-3 text-left" style="line-height:15px">
+                    <div class="col-3 pl-3 text-left" style="line-height:15px">
                         <span t-field="o.partner_id"/><br/>
                         <t t-if="(l) == 1">
                             <span class="text-left" t-field="o.partner_id.street"/>
                         </t>
                     </div>
-                    <div class="col-4 px-0">
+                    <div class="col-3 px-0">
                         <span class="text-left" t-field="o.partner_id.x_customer_payment_id"/>
                     </div>
-                    <div class="col-2 pr-0 text-right">
+                    <div class="col-3 pr-0 text-right">
                         <span t-field="o.x_studio_total_overdue"/>
                     </div>
                     <div class="col-3">
