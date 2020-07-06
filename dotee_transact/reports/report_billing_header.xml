@@ -31,7 +31,7 @@
                 }
             </style>
             <span t-set="d_start_delta" t-value="relativedelta(months=-1)"/>
-            <span t-set="d_delta" t-value="relativedelta(months=o.period -1)"/>
+            <span t-set="d_delta" t-value="relativedelta(months=o.period -2)"/>
 
 <!--                         <span t-set="d_dateorder" t-value="datetime.datetime.strptime(o.invoice_date,'%Y-%m-%d %H:%M:%S')"/> -->
 
@@ -83,8 +83,8 @@
                             </tr>
                         </table><!-- \End table --> 
                         <div class="col-7" style="position:absolute;right:-390px">
-                            <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
-                            <!-- <span t-esc="start_paydate.strftime('%b %Y')" /> -->
+                            <!-- <span t-esc="'{:%b %Y}'.format(o.invoice_date)" /> -->
+                            <span t-esc="start_paydate.strftime('%b %Y')" />
                             <span>-</span>
                             <span t-esc="d_paydate.strftime('%b %Y')"/>
                         </div>
@@ -111,8 +111,8 @@
                         <span t-field="o.x_studio_total_overdue"/>
                     </div>
                     <div class="col-3 px-0 text-right">
-                        <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
-                        <!-- <span t-esc="start_paydate.strftime('%b %Y')" /> -->
+                        <!-- <span t-esc="'{:%b %Y}'.format(o.invoice_date)" /> -->
+                        <span t-esc="start_paydate.strftime('%b %Y')" />
                         <span>-</span>
                         <span t-esc="d_paydate.strftime('%b %Y')"/>
 <!--                         <span t-esc="datetime.datetime.strptime('08/24/2020', '%m/$d/%Y')" /> -->
