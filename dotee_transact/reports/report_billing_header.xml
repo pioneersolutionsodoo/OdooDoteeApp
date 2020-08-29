@@ -83,11 +83,10 @@
                             </tr>
                         </table><!-- \End table --> 
                         <div class="col-7" style="position:absolute;right:-390px">
-                            Jul 2020 - Aug 2020
-<!--                             <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />-->
-<!--&lt;!&ndash;                            <span t-esc="start_paydate.strftime('%b %Y')" />&ndash;&gt;-->
-<!--                            <span>-</span>-->
-<!--                            <span t-esc="d_paydate.strftime('%b %Y')"/>-->
+                             <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
+<!--                            <span t-esc="start_paydate.strftime('%b %Y')" />-->
+                            <span>-</span>
+                            <span t-esc="d_paydate.strftime('%b %Y')"/>
                         </div>
 <!--                                     <div class="col-6 offset-9">
                             <div class="text-right">
@@ -112,12 +111,10 @@
                         <span t-field="o.x_studio_total_overdue"/>
                     </div>
                     <div class="col-3 px-0 text-right">
-                            Jul 2020
-<!--                         <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />-->
+                         <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />
 <!--                        <span t-esc="start_paydate.strftime('%b %Y')" />-->
                         <span>-</span>
-                            Aug 2020
-<!--                        <span t-esc="d_paydate.strftime('%b %Y')"/>-->
+                        <span t-esc="d_paydate.strftime('%b %Y')"/>
 <!--                         <span t-esc="datetime.datetime.strptime('08/24/2020', '%m/$d/%Y')" /> -->
                         <t t-foreach="datefinder.find_dates('This invoice covers the following period: 08/24/2020 - 08/24/2020')" t-as="match">
                             <span>Date: </span>
