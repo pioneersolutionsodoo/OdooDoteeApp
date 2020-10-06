@@ -85,9 +85,9 @@
                         <div class="col-7" style="position:absolute;right:-390px">
 <!--                             <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />-->
 <!--                            <span t-esc="start_paydate.strftime('%b %Y')" />-->
-                            Sept 2020
+                            <span>Sept 2020</span>
                             <span>-</span>
-                            Oct 2020
+                            <span>Oct 2020</span>
 <!--                            <span t-esc="d_paydate.strftime('%b %Y')"/>-->
                         </div>
 <!--                                     <div class="col-6 offset-9">
@@ -115,9 +115,9 @@
                     <div class="col-3 px-0 text-right">
 <!--                         <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />-->
 <!--                        <span t-esc="start_paydate.strftime('%b %Y')" />-->
-                        Sept 2020
+                        <span>Sept 2020</span>
                         <span>-</span>
-                        Oct 2020
+                        <span>Oct 2020</span>
 <!--                        <span t-esc="d_paydate.strftime('%b %Y')"/>-->
 <!--                         <span t-esc="datetime.datetime.strptime('08/24/2020', '%m/$d/%Y')" /> -->
                         <t t-foreach="datefinder.find_dates('This invoice covers the following period: 08/24/2020 - 08/24/2020')" t-as="match">
