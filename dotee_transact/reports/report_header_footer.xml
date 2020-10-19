@@ -27,11 +27,11 @@
           </div>
           <div class="row">
               <div class="col-4">
-                  <!-- dotee_transact.external_layout_header_inherit_cr -->
-                  <img class="img-fluid img-logo" src="/dotee_transact/static/src/img/side-logo.png" style="width:110px"/>
+                  <!-- dotee-transact.external_layout_header_inherit_cr -->
+                  <img class="img-fluid img-logo" src="/dotee-transact/static/src/img/side-logo.png" style="width:110px"/>
               </div>
               <div class="col-4">
-                  <img class="img-fluid img-logo" src="/dotee_transact/static/src/img/lagos-logo.png" style="width:110px"/>
+                  <img class="img-fluid img-logo" src="/dotee-transact/static/src/img/lagos-logo.png" style="width:110px"/>
                   <br/>
                   <span>
                       <address>
@@ -54,7 +54,7 @@
           <t t-raw="0"/>
         </div>
         <div class="footer">
-            <link rel="stylesheet" href="/dotee_transact/static/src/css/report.css"/>
+            <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/>
             <div class="row">
                 <div class="col-8 py-2 px-2" style="font-size:12px">
                     <span>
@@ -105,7 +105,7 @@
               
             </div>
           </div>
-<!--                         <t t-call="dotee_transact.external_layout_footer_inherit_cr"/> -->
+<!--                         <t t-call="dotee-transact.external_layout_footer_inherit_cr"/> -->
 
           <div class="row mb-2 mt-2">
               <div class="col-12">

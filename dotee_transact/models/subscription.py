@@ -46,8 +46,7 @@ class SubscriptionLine(models.Model):
 #     _description = 'dotee-transact.dotee-transact'
     _inherit = 'sale.subscription.line'
     
-    unit_vacant = fields.Integer('Vacant Unit', required=True, digits='Product Price')
-    # quantity = fields.Integer(string='Quantity', help="Quantity that will be invoiced.", default=1, digits='Product Unit of Measure')
+    unit_vacant = fields.Float('Vacant Unit', required=True, digits='Product Price')
     period = fields.Integer(related='analytic_account_id.period', store=True)
     price_subtotal = fields.Float(compute='_compute_price_subtotal', string='Subtotal', digits='Account', store=True)
 
