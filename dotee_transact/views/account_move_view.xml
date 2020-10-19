@@ -14,20 +14,5 @@
 				</xpath>
 			</field>
 		</record>
-        
-        <record id="view_account_invoice_report_graph_extends" model="ir.ui.view">
-            <field name="name">dotee.mis.report.instance.view.form</field>
-			<field name="model">mis.report.instance</field>
-			<field name="inherit_id" ref="mis_builder.mis_report_instance_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//form//sheet//div[1]" position="before">
-                    <div class="col">
-                        <button name="print_report" type="object" string="Print Debtor Report" class="btn btn-secondary">
-                            <i class="fa fa-fw fa-print"></i>
-                        </button>
-                    </div>
-                </xpath>
-            </field>
-        </record>
 	</data>
 </odoo>
