@@ -10,9 +10,6 @@ class Partner(models.Model):
 
     x_customer_payment_id = fields.Char('Property Code')
     
-    def print_debtor_report(self):
-        return self.env.ref('dotee_transact.dotee_debtor_report').report_action(self)
-    
 
     # x_studio_computed_charge = fields.Monetary()
 

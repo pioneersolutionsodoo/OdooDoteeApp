@@ -18,7 +18,12 @@ class AccountMoveDoteeLine(models.Model):
 #     _description = 'dotee-transact.dotee-transact'
     _inherit = "account.move.line"
 
-    unit_vacant = fields.Float('Vacant Unit', digits='Product Price')
+    unit_vacant = fields.Integer('Vacant Unit', digits='Product Price')
+    
+    # quantity = fields.Integer(string='Quantity',
+    #     default=1, digits='Product Unit of Measure',
+    #     help="The optional quantity expressed by this line, eg: number of product sold. "
+    #          "The quantity is not a legal requirement but is very useful for some reports.")
     
     period = fields.Integer(related='move_id.period', store=True)
 

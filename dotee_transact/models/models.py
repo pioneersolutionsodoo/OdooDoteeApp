@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+# from odoo import models, fields, api
 
-class mis_report(models.Model):
-    _inherit = 'mis.report.instance'
-    
-#     def print_report(self):
-#         return self.env.ref('dotee_transact.dotee_debtor_report').report_action(self)
-    
+
 # class dotee-transact(models.Model):
 #     _name = 'dotee-transact.dotee-transact'
 #     _description = 'dotee-transact.dotee-transact'

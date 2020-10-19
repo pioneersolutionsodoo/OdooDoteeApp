@@ -5,7 +5,7 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="dotee_transact.external_layout_header_inherit_cr">
                 
-                    <!-- <link rel="stylesheet" href="/dotee-transact/static/src/css/report.css"/> -->
+                    <!-- <link rel="stylesheet" href="/dotee_transact/static/src/css/report.css"/> -->
                     <!--<div class="page" style="font-size:12px;line-height:1.2">-->
                     <div class="page px-0">
                         <link rel="stylesheet" href="/dotee_transact/static/src/css/report.css"/>
@@ -196,7 +196,7 @@
     <!-- <template id="dotee_report_invoice_style" inherit_id="web.assets_backend">
       <xpath expr=".">
         <t>
-            <link rel='stylesheet' href="/dotee-transact/static/src/css/report.css"/>
+            <link rel='stylesheet' href="/dotee_transact/static/src/css/report.css"/>
         </t>
       </xpath>
     </template> -->

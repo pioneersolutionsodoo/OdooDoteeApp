@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="paperformat_frenchcheck" model="report.paperformat">
+<!--     <record id="paperformat_frenchcheck" model="report.paperformat">
         <field name="name">Dotee Format</field>
         <field name="default" eval="True"/>
         <field name="format">A4</field>
@@ -12,7 +12,7 @@
         <field name="header_line" eval="False"/>
         <field name="header_spacing">60</field>
         <field name="dpi">100</field>
-    </record>
+    </record> -->
     <report
         id="dotee_account_report"
         model="account.move"
@@ -35,7 +35,7 @@
         attachment="(object.state in ('open','paid')) and
             ('INV'+(object.number or '').replace('/','')+'.pdf')"
     />
-    <report
+	<report
         id="dotee_debtor_report"
         model="res.partner"
         string="Debtor Report"
