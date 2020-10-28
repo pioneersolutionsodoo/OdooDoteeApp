@@ -35,8 +35,8 @@
 
 <!--                         <span t-set="d_dateorder" t-value="datetime.datetime.strptime(o.invoice_date,'%Y-%m-%d %H:%M:%S')"/> -->
 
-            <span t-set="start_paydate" t-value="o.invoice_date + d_start_delta"/>
-            <span t-set="d_paydate" t-value="o.invoice_date + d_delta"/>
+<!--            <span t-set="start_paydate" t-value="o.invoice_date + d_start_delta"/>-->
+<!--            <span t-set="d_paydate" t-value="o.invoice_date + d_delta"/>-->
             
 
             <div class="clearfix"  style="padding-bottom:140px">
