@@ -6,7 +6,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 class Partner(models.Model):
     _inherit = "res.partner"
 
-    x_customer_payment_id = fields.Char('Property Code')
+    # x_customer_payment_id = fields.Char('Property Code')
     full_formatted_address = fields.Char("Full Address", compute="_get_full_address")
 
     @api.depends('street', 'x_studio_wards_2', 'x_studio_provinces_2')
