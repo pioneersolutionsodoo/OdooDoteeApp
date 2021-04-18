@@ -14,7 +14,7 @@
                             <div class="col-3 text-left">
                                 <strong>Property Code:</strong>
                                 <span t-field="o.partner_id.x_customer_payment_id"/>
-                                <div t-field="o.partner_id.x_studio_full_formatted_address" t-options-widget="'contact'" t-options-fields="['name', 'address']" t-options-no_marker="True"/>
+                                <div t-field="o.partner_id.x_studio_full_formatted_address" t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}' />
                             </div>
                         </div>
                         <div class="col-9 pl-5" style="margin-top:140px">
