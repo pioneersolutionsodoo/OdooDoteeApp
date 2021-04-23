@@ -14,6 +14,7 @@
                             <div class="col-3 text-left">
                                 <strong>Property Code:</strong>
                                 <span t-field="o.partner_id.x_customer_payment_id"/>
+                                <span t-field="o.partner_id"/>
                                 <div t-field="o.partner_id.full_formatted_address" />
                             </div>
                         </div>
