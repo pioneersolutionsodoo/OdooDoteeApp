@@ -78,7 +78,7 @@
                             <tr class="my-0 py-0">
                                 <!-- <td><strong>Total</strong></td> -->
                                 <td class="text-right my-0 py-0">
-                                    <span t-field="o.x_studio_total_overdue"/>
+                                    <span t-field="o.partner_id.total_due"/>
                                 </td> 
                             </tr>
                         </table><!-- \End table --> 
@@ -110,7 +110,7 @@
                         <span class="text-left" t-field="o.partner_id.x_customer_payment_id"/>
                     </div>
                     <div class="col-3 px-0 text-right">
-                        <span t-field="o.x_studio_total_overdue"/>
+                        <span t-field="o.partner_id.total_due"/>
                     </div>
                     <div class="col-3 px-0 text-right">
 <!--                         <span t-esc="'{:%b %Y}'.format(o.invoice_date)" />-->
