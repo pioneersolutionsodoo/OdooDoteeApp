@@ -14,9 +14,17 @@
                             <div class="col-3 text-left">
                                 <strong>Property Code:</strong>
                                 <span t-field="o.partner_id.x_customer_payment_id"/>
-                                <div t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address']" t-options-no_marker="True"/>
+                                <span t-field="o.partner_id"/>
+                                <div t-field="o.partner_id.full_formatted_address" />
                             </div>
                         </div>
+                   <!--     <div class="row pl-5">
+                            <div class="col-3 text-left">
+                                <strong>Property Code:</strong>
+                                <span t-field="o.partner_id.x_customer_payment_id"/>
+                                <div t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address']" t-options-no_marker="True"/>
+                            </div>
+                        </div> -->
                         <div class="col-9 pl-5" style="margin-top:140px">
                             <table class="table table-borderless" name="invoice_line_table" style="color:#000">
                                 <tbody class="invoice_tbody pt-1">
