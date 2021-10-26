@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_kill_chromedriver" model="ir.cron">
+            <field name="name">Kill chromedriver processes</field>
+            <field name="model_id" ref="whatsapp_all_in_one.model_whatsapp_msg"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_kill_chromedriver()</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+        </record>
+        <record id="ir_cron_subcription_reminder" model="ir.cron">
+            <field name="name">Send Subcription Reminder via WhatsApp</field>
+            <field name="model_id" ref="sale_subscription.model_sale_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_whatsapp_subscription_reminder()</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_type">days</field>
+            <field name="interval_number">1</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>
