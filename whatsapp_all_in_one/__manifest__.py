@@ -12,7 +12,7 @@ This module can be used to send messages to WhatsApp
 Send Messages via WhatsApp
 WhatsApp All in One Module
 """,
-    'depends': ['base', 'base_setup', 'contacts', 'account', 'sale_management', 'purchase', 'delivery', 'website_sale', 'point_of_sale', 'sale_subscription'],
+    'depends': ['base', 'base_setup', 'contacts', 'account', 'sale_management', 'sale_subscription'],
     'data': [
         'data/whatsapp_cron.xml',
         'wizard/send_wp_msg_views.xml',
@@ -20,10 +20,11 @@ WhatsApp All in One Module
         'views/res_config_settings_views.xml',
         'views/account_inovice_form_wa_inherited.xml',
         'views/account_payment_form_wa_inherited.xml',
-        'views/pos_config_views.xml',
-        'views/purchase_order_form_wa_inherited.xml',
+        # 'views/pos_config_views.xml',
+        # 'views/purchase_order_form_wa_inherited.xml',
         'views/sale_order_form_wa_inherited.xml',
-        'views/stock_picking_form_wa_inherited.xml',
+        # 'views/stock_picking_form_wa_inherited.xml',
+        'views/sale_subscription_views.xml',
         'views/templates.xml',
     ],
     'qweb': [

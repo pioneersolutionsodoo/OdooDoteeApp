@@ -475,12 +475,12 @@ class SendWAMessage(models.TransientModel):
                     'attachments': attachments,
                     'dbuuid': self.unique_user,
                     'user_id': self.env.uid,
-                    'ctx': json.dumps(self.env.context.copy()),
+                    # 'ctx': json.dumps(self.env.context.copy()),
                 }
             }
-            req = requests.post(request_url, data=json.dumps(data), headers=headers)
-            if req.ok:
-                json_result = json.loads(req.text)
+            response = requests.post(request_url, data=json.dumps(data), headers=headers)
+            if response.ok:
+                json_result = json.loads(response.text)
                 json_result = json_result and json.loads(json_result.get('result'))
                 if json_result and isinstance(json_result, dict) and json_result.get('notLoggedIn'):
                     img_data = json_result.get('qr_image')
@@ -528,12 +528,12 @@ class SendWAMessage(models.TransientModel):
                     elif active_model == 'account.payment':
                         rec.message_post(body=_("Payment %s sent via WhatsApp") % (rec.name))
             else:
-                _logger.warning(_('Error in request, status code: ' + str(req.status_code)))
-                raise UserError(_('Error in request, status code: ' + str(req.status_code)))
+                _logger.warning(_('Error in request, status code: %s' % str(response.status_code)))
+                raise UserError(_('Error in request, status code: %s' % str(response.status_code)))
         except requests.HTTPError:
             _logger.warning(_('Error opening url'))
         except Exception as exx:
-            raise UserError(_('Error in request, status code: ' + str(req.status_code)))
+            raise UserError(_('Error in request, status code: %s' % str(exx)))
 
     def action_send_msg1(self):
         if not _silenium_lib_imported:
