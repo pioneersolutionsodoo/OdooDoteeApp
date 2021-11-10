@@ -64,7 +64,7 @@ class SaleSubscription(models.Model):
                             next_date = subscription.recurring_next_date or current_date
                             rule, interval = subscription.recurring_rule_type, subscription.recurring_interval
                             new_date = subscription._get_recurring_next_date(rule, interval, next_date, subscription.recurring_invoice_day)
-                            # subscription.with_context(skip_update_recurring_invoice_day=True).write({'recurring_next_date': new_date})
+                            subscription.with_context(skip_update_recurring_invoice_day=True).write({'recurring_next_date': new_date})
                             subscription.send_invoice_by_whatsapp(new_invoice)
                             if automatic and auto_commit:
                                 cr.commit()
