@@ -53,27 +53,44 @@ class SaleSubscription(models.Model):
                     if automatic and auto_commit:
                         cr.commit()
                     if subscription.template_id.payment_mode == 'send_by_whatsapp':
-                        try:
-                            invoice_values = subscription.with_context(lang=subscription.partner_id.lang)._prepare_invoice()
-                            new_invoice = self.env['account.move'].with_context(context_invoice).create(invoice_values)
-                            new_invoice.message_post_with_view(
-                                'mail.message_origin_link',
-                                values={'self': new_invoice, 'origin': subscription},
-                                subtype_id=self.env.ref('mail.mt_note').id)
-                            invoices += new_invoice
-                            next_date = subscription.recurring_next_date or current_date
-                            rule, interval = subscription.recurring_rule_type, subscription.recurring_interval
-                            new_date = subscription._get_recurring_next_date(rule, interval, next_date, subscription.recurring_invoice_day)
-                            subscription.with_context(skip_update_recurring_invoice_day=True).write({'recurring_next_date': new_date})
-                            subscription.send_invoice_by_whatsapp(new_invoice)
-                            if automatic and auto_commit:
-                                cr.commit()
-                        except Exception:
-                            if automatic and auto_commit:
-                                cr.rollback()
-                                _logger.exception('Fail to create recurring invoice for subscription %s', subscription.code)
-                            else:
-                                raise
+                        if not res:
+                            try:
+                                invoice_values = subscription.with_context(lang=subscription.partner_id.lang)._prepare_invoice()
+                                new_invoice = self.env['account.move'].with_context(context_invoice).create(invoice_values)
+                                new_invoice.message_post_with_view(
+                                    'mail.message_origin_link',
+                                    values={'self': new_invoice, 'origin': subscription},
+                                    subtype_id=self.env.ref('mail.mt_note').id)
+                                invoices += new_invoice
+                                next_date = subscription.recurring_next_date or current_date
+                                rule, interval = subscription.recurring_rule_type, subscription.recurring_interval
+                                new_date = subscription._get_recurring_next_date(rule, interval, next_date, subscription.recurring_invoice_day)
+                                subscription.with_context(skip_update_recurring_invoice_day=True).write({'recurring_next_date': new_date})
+                                subscription.send_invoice_by_whatsapp(new_invoice)
+                                if automatic and auto_commit:
+                                    cr.commit()
+                            except Exception:
+                                if automatic and auto_commit:
+                                    cr.rollback()
+                                    _logger.exception('Fail to create recurring invoice for subscription %s', subscription.code)
+                                else:
+                                    raise
+                        else:
+                            try:
+                                next_date = subscription.recurring_next_date or current_date
+                                rule, interval = subscription.recurring_rule_type, subscription.recurring_interval
+                                new_date = subscription._get_recurring_next_date(rule, interval, next_date, subscription.recurring_invoice_day)
+                                subscription.with_context(skip_update_recurring_invoice_day=True).write({'recurring_next_date': new_date})
+                                subscription.send_invoice_by_whatsapp(res)
+                                if automatic and auto_commit:
+                                    cr.commit()
+                            except Exception:
+                                if automatic and auto_commit:
+                                    cr.rollback()
+                                    _logger.exception('Fail to create recurring invoice for subscription %s', subscription.code)
+                                else:
+                                    raise
+
         return res
 
     def send_invoice_by_whatsapp(self, invoice):
@@ -85,7 +102,7 @@ class SaleSubscription(models.Model):
         unique_user = dbuuid + '_2'
         Attachment = self.env['ir.attachment']
         msg = "Dear *" + self.partner_id.name + '*\n'
-        msg += 'Invoice for your subscription *' + self.name + '* is here.'
+        msg += 'Invoice *#' + invoice.name + '* for your subscription *' + self.name + '* is here.'
         data = {
             'partner_ids': [(6, 0, self.partner_id.ids)],
             'message': msg,
@@ -97,9 +114,9 @@ class SaleSubscription(models.Model):
 
         if report.report_type not in ['qweb-html', 'qweb-pdf']:
             raise UserError(_('Unsupported report type %s found.') % report.report_type)
-        res, format = report.render_qweb_pdf([self.id])
+        res, format = report.render_qweb_pdf([invoice.id])
         res = base64.b64encode(res)
-        res_name = self.name
+        res_name = 'Invoice_' + invoice.name.replace('/', '_')
         if not res_name:
             res_name = 'report.' + report_service
         ext = "." + format
@@ -112,8 +129,8 @@ class SaleSubscription(models.Model):
                 'name': attachment[0],
                 'datas': attachment[1],
                 'type': 'binary',
-                'res_model': self._name,
-                'res_id': self.id,
+                'res_model': invoice._name,
+                'res_id': invoice.id,
             }
             attachment_ids.append(Attachment.create(attachment_data).id)
         if attachment_ids:
